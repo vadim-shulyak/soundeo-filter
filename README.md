@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Soundeo Artist Filter - Chrome Extension
 
 A Chrome extension that highlights tracks on Soundeo.com based on artist blacklist/whitelist stored in a Google Sheet.
@@ -234,4 +233,3 @@ Now when you use "Quick Add", artists will be saved directly to your Google Shee
 MIT License - Feel free to modify and share!
 =======
 # soundeo-filter
->>>>>>> a51e98610d222c275fd0888bc35d391d484e6673

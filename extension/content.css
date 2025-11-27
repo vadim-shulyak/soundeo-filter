@@ -1,0 +1,159 @@
+/* Soundeo Artist Filter - Content Styles */
+
+/* Blacklisted track highlighting */
+.trackitem.saf-blacklisted {
+  position: relative;
+  background: linear-gradient(
+    to right,
+    var(--saf-highlight-color, #ff4444) 0px,
+    var(--saf-highlight-color, #ff4444) 4px,
+    transparent 4px
+  ) !important;
+  border-left: 4px solid var(--saf-highlight-color, #ff4444) !important;
+  background-color: rgba(255, 68, 68, 0.1) !important;
+}
+
+.trackitem.saf-blacklisted::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--saf-highlight-color, #ff4444);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.trackitem.saf-blacklisted .info,
+.trackitem.saf-blacklisted .download,
+.trackitem.saf-blacklisted .favorites,
+.trackitem.saf-blacklisted button {
+  position: relative;
+  z-index: 1;
+}
+
+/* Whitelisted track highlighting */
+.trackitem.saf-whitelisted {
+  position: relative;
+  background: linear-gradient(
+    to right,
+    var(--saf-highlight-color, #44ff44) 0px,
+    var(--saf-highlight-color, #44ff44) 4px,
+    transparent 4px
+  ) !important;
+  border-left: 4px solid var(--saf-highlight-color, #44ff44) !important;
+  background-color: rgba(68, 255, 68, 0.05) !important;
+}
+
+.trackitem.saf-whitelisted::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--saf-highlight-color, #44ff44);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.trackitem.saf-whitelisted .info,
+.trackitem.saf-whitelisted .download,
+.trackitem.saf-whitelisted .favorites,
+.trackitem.saf-whitelisted button {
+  position: relative;
+  z-index: 1;
+}
+
+/* Badge styles */
+.saf-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  user-select: none;
+}
+
+.saf-badge-blacklist {
+  background: rgba(255, 68, 68, 0.2);
+}
+
+.saf-badge-whitelist {
+  background: rgba(68, 255, 68, 0.2);
+}
+
+/* Hover effects for better visibility */
+.trackitem.saf-blacklisted:hover {
+  background-color: rgba(255, 68, 68, 0.15) !important;
+}
+
+.trackitem.saf-whitelisted:hover {
+  background-color: rgba(68, 255, 68, 0.1) !important;
+}
+
+/* Animation for newly highlighted items */
+@keyframes saf-highlight-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--saf-highlight-color, #ff4444);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.trackitem.saf-blacklisted:not([data-saf-animated]),
+.trackitem.saf-whitelisted:not([data-saf-animated]) {
+  animation: saf-highlight-pulse 0.6s ease-out;
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .trackitem.saf-blacklisted {
+    background-color: rgba(255, 68, 68, 0.15) !important;
+  }
+  
+  .trackitem.saf-whitelisted {
+    background-color: rgba(68, 255, 68, 0.1) !important;
+  }
+}
+
+/* Make sure the highlighting doesn't interfere with player controls */
+.trackitem.saf-blacklisted .action,
+.trackitem.saf-whitelisted .action,
+.trackitem.saf-blacklisted .track-download-lnk,
+.trackitem.saf-whitelisted .track-download-lnk {
+  position: relative;
+  z-index: 2;
+}
+
+/* Tooltip styling for badges */
+.saf-badge[title] {
+  cursor: help;
+}
+
+.saf-badge[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-top: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}

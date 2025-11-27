@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Icon Generator</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    canvas { border: 1px solid #ccc; margin: 10px; }
+    a { display: block; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>Soundeo Filter Icons Generator</h1>
+  <p>Right-click on each canvas and "Save image as..." to save the icons:</p>
+  
+  <div>
+    <h3>icon16.png (16x16)</h3>
+    <canvas id="icon16" width="16" height="16"></canvas>
+  </div>
+  
+  <div>
+    <h3>icon48.png (48x48)</h3>
+    <canvas id="icon48" width="48" height="48"></canvas>
+  </div>
+  
+  <div>
+    <h3>icon128.png (128x128)</h3>
+    <canvas id="icon128" width="128" height="128"></canvas>
+  </div>
+
+  <script>
+    function drawIcon(canvas) {
+      const ctx = canvas.getContext('2d');
+      const size = canvas.width;
+      const center = size / 2;
+      const radius = size * 0.45;
+      
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#4a90d9');
+      gradient.addColorStop(1, '#357abd');
+      
+      // Draw circle background
+      ctx.beginPath();
+      ctx.arc(center, center, radius, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      
+      // Draw music note
+      ctx.fillStyle = 'white';
+      const noteX = center - size * 0.1;
+      const noteY = center - size * 0.25;
+      const noteWidth = size * 0.15;
+      const noteHeight = size * 0.4;
+      
+      // Note stem
+      ctx.fillRect(noteX + noteWidth * 0.6, noteY, noteWidth * 0.15, noteHeight);
+      
+      // Note head
+      ctx.beginPath();
+      ctx.ellipse(noteX, noteY + noteHeight, noteWidth * 0.5, noteWidth * 0.35, -0.3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Filter lines
+      ctx.globalAlpha = 0.7;
+      const lineX = center + size * 0.15;
+      const lineY = center - size * 0.1;
+      const lineHeight = size * 0.04;
+      const lineSpacing = size * 0.08;
+      
+      ctx.fillRect(lineX, lineY, size * 0.2, lineHeight);
+      ctx.fillRect(lineX, lineY + lineSpacing, size * 0.15, lineHeight);
+      ctx.fillRect(lineX, lineY + lineSpacing * 2, size * 0.2, lineHeight);
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    // Generate all icons
+    ['icon16', 'icon48', 'icon128'].forEach(id => {
+      const canvas = document.getElementById(id);
+      drawIcon(canvas);
+    });
+  </script>
+</body>
+</html>

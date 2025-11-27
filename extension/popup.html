@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soundeo Artist Filter</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎵 Soundeo Filter</h1>
+    
+    <div class="section">
+      <h2>Google Spreadsheet</h2>
+      <div class="input-group">
+        <label for="spreadsheet-id">Spreadsheet ID:</label>
+        <input type="text" id="spreadsheet-id" placeholder="Enter Google Spreadsheet ID">
+        <small class="hint">Find it in the URL: docs.google.com/spreadsheets/d/<strong>[ID]</strong>/edit</small>
+        <small class="hint">⚠️ Make sure the spreadsheet is public (Anyone with link can view)</small>
+      </div>
+      <div class="input-group">
+        <label for="blacklist-sheet">Blacklist Sheet Name:</label>
+        <input type="text" id="blacklist-sheet" value="Blacklist" placeholder="Sheet name for blacklist">
+      </div>
+      <div class="input-group">
+        <label for="whitelist-sheet">Whitelist Sheet Name:</label>
+        <input type="text" id="whitelist-sheet" value="Whitelist" placeholder="Sheet name for whitelist">
+      </div>
+      <div class="input-group">
+        <label for="web-app-url">Apps Script Web App URL (for writing):</label>
+        <input type="text" id="web-app-url" placeholder="https://script.google.com/macros/s/.../exec">
+        <small class="hint">Required to add artists directly to Google Sheet. See README for setup instructions.</small>
+      </div>
+      <div class="btn-row">
+        <button id="save-sheets-btn" class="btn btn-primary">💾 Save & Sync</button>
+        <button id="open-sheet-btn" class="btn btn-secondary">📝 Open Sheet</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Highlight Colors</h2>
+      <div class="color-group">
+        <label for="blacklist-color">🚫 Blacklist Color:</label>
+        <div class="color-input-wrapper">
+          <input type="color" id="blacklist-color" value="#ff4444">
+          <input type="text" id="blacklist-color-text" value="#ff4444" class="color-text">
+        </div>
+      </div>
+      <div class="color-group">
+        <label for="whitelist-color">✅ Whitelist Color:</label>
+        <div class="color-input-wrapper">
+          <input type="color" id="whitelist-color" value="#44ff44">
+          <input type="text" id="whitelist-color-text" value="#44ff44" class="color-text">
+        </div>
+      </div>
+      <button id="save-colors-btn" class="btn btn-primary">💾 Save Colors</button>
+    </div>
+
+    <div class="section">
+      <h2>Quick Add Artist</h2>
+      <p class="hint" id="quick-add-hint">Artists will be added directly to your Google Sheet.</p>
+      <div class="input-group">
+        <label for="artist-name">Artist Name:</label>
+        <input type="text" id="artist-name" placeholder="Enter artist name">
+      </div>
+      <div class="btn-group">
+        <button id="add-blacklist-btn" class="btn btn-danger">🚫 Add to Blacklist</button>
+        <button id="add-whitelist-btn" class="btn btn-success">✅ Add to Whitelist</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Statistics</h2>
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-label">🚫 Blacklisted Artists:</span>
+          <span id="blacklist-count" class="stat-value">0</span>
+          <span id="local-blacklist-count" class="stat-local">(+0 local)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">✅ Whitelisted Artists:</span>
+          <span id="whitelist-count" class="stat-value">0</span>
+          <span id="local-whitelist-count" class="stat-local">(+0 local)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Last Sync:</span>
+          <span id="last-sync" class="stat-value">Never</span>
+        </div>
+      </div>
+      <button id="refresh-btn" class="btn btn-secondary">🔄 Refresh Data</button>
+    </div>
+
+    <div id="message" class="message hidden"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -197,7 +197,7 @@ Now when you use "Quick Add", artists will be saved directly to your Google Shee
 
 ### Tracks not highlighting
 - Click "Refresh Data" to sync latest data
-- Check if the artist name in your sheet matches exactly (case-insensitive)
+- Check if the artist name in your sheet matches exactly
 - Reload the Soundeo page
 
 ### Extension not working
